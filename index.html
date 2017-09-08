@@ -10,13 +10,8 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
 <script src="https://use.fontawesome.com/cd53706be4.js"></script>
-
-
-
-
 <link rel="icon" href="assets/images/android.png">
 </head>
 <body>
@@ -32,7 +27,7 @@
 	
 	<div class="col-xs-2"></div>
 </div>
-	 <div class="col-md-8 col-xs-12">	
+	 <div class="col-md-7 col-xs-12">	
 		<div class="panel panel-primary">
             <div class="panel-heading">
                <h2 class="panel-title"><strong>Current Trains</strong></h2>
@@ -45,6 +40,7 @@
                     <th>Destination</th>
                     <th>Arriving In:</th>
                     <th>Arriving From:</th>
+                    <th>Frequency</th>
                   </tr>
                 </thead>
                 <tbody id="table">
@@ -53,43 +49,28 @@
             </div>
           </div>
       </div>
-   <div class="col-md-4 col-xs-12">
+   <div class="col-md-5 col-xs-12">
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<h2 class="panel-title"><strong>Schedule Another Train</strong></h2>
 		</div>
 		<div class="panel-body">
 			<form id="train-add" class="form-group">	
-			<div class="row">
-				<div class="col-xs-6">
-					<div><label for="train-name">Train Name</label></div>
-					<div><label for="train-destination">Destination</label></div>
-					<div><label for="arrival" class="input">Est. Arrival</label></div>
-					<div><label for="arriving-from">Arriving From</label></div>
-				</div>
-				<div class="col-xs-6">
-					<div><input type="name" id="train-name"></div>
-					<div><input type="text" id="train-destination"></div>
-					<div class="input-group date" id="datetimepicker8"><input type="text" class="form-contol" id="arrival"><span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span></span></div> <script type="text/javascript">
-       		 $(function () {
-            $('#datetimepicker8').datetimepicker({
-                icons: {
-                    time: "fa fa-clock-o",
-                    date: "fa fa-calendar",
-                    up: "fa fa-arrow-up",
-                    down: "fa fa-arrow-down"
-                }
-            });
-        });
-    </script>
 
-					<div><input type="text" id="arriving-from"></div>
-				</div>
-			
+					<div><label for="train-name">Train Name</label>
+					<input type="name" class="form-control" id="train-name"></div>
+					<div><label for="train-destination">Destination</label>
+					<input type="name" class="form-control" id="train-name"></div>
+					<div><label for="arrival" class="input">Estimated Arrival</label>
+					<input type="time" class="form-control" id="arrival"></div>
+					<div><label for="arriving-from">Arriving From</label>
+					<input type="text" class="form-control" id="arriving-from"></div>
+					<div><label for="frequency">Frequency</label>
+					<input type="text" class="form-control" id="frequency"></div>
+
 			 <button class="btn btn-primary" id="train-add-btn" type="submit">Submit</button>
 			 <button class="btn btn-primary" id="train-reset" type="reset">Reset Form</button>
- 			</div>
+
  			</form>
 
 		</div>
