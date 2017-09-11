@@ -58,7 +58,6 @@ var newTrain={
 	freq: frequency
 	};
 
-console.log(newTrain);
 
 //database push 
 database.ref().push(newTrain);
@@ -94,7 +93,6 @@ function rewriteCurrentTrains(childSnapshot){
       }
 
 
-console.log ("trainKey  " +trainKey);
 var newRow=$('<tr>');
 newRow.addClass(trainKey);
 newRow.append($('<td>').text(trainName))
@@ -131,19 +129,18 @@ function CurrentTrainsValueChanged(childSnapshot){
       }
 
 
-console.log ("trainKey  " +trainKey);
-$('.'+trainKey).empty();
-$('.'+trainKey).html(($('<td>').text(trainName)
-.append($('<td>').text(destination))
-.append($('<td>').text(nextTime))
-.append($('<td>').text(frequency))
-.append($('<td>').text(timeDifferenceTotal))
-.append($('<button>').addClass("delete btn btn-sm btn-danger").attr("data-train",trainKey).html($('<i>').addClass('glyphicon glyphicon-remove')))));
 
-// var rewriteRow=$('<td>')
-// rewriteRow.html(trainName)
+$("." + trainKey).append(
+  $("<td>").text(trainName),
+  $("<td>").text(destination),
+  $("<td>").text(nextTime),
+  $("<td>").text(frequency),
+  $("<td>").text(timeDifferenceTotal),
+  $("<button>")
+    .addClass("delete btn btn-sm btn-danger")
+    .attr("data-train", trainKey)
+    .html($("<i>").addClass("glyphicon glyphicon-remove")));
 
-//$('.'+trainKey).html(rewriteRow);
 
 
 }
@@ -152,15 +149,12 @@ $('.'+trainKey).html(($('<td>').text(trainName)
 rewriteCurrentTrains(childSnapshot);
  });
 
-//  database.ref().on('child_changed',function(childSnapshot){
-//  console.log("REWRITE CHANGE");
-//  CurrentTrainsValueChanged(childSnapshot);
-// });
+ database.ref().on('child_changed',function(childSnapshot){
+ CurrentTrainsValueChanged(childSnapshot);
+});
 
 $(document).on('click','.delete', function(event){
-console.log("DELETE");
  	var trainKey = $(this).attr('data-train');
- 		console.log(trainKey);
       database.ref(trainKey).remove();
       $('.'+ trainKey).remove();
 });
