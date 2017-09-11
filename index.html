@@ -3,7 +3,7 @@
 <head>
 	<meta name="Trainviewport" content="width=device-width, initial-scale=1">
 	<title>Trains are fun!</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/slate/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
 <!-- <link href="https://fonts.googleapis.com/css?family=Pacifico|VT323|Open+Sans+Condensed:300" rel="stylesheet"> -->
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -22,6 +22,7 @@
 		<div class="jumbotron text-center">
 			<h1>Trains can be fun I suppose</h1>
 			<h2>Choo Choo?</h2>
+			<p> Current Time: <span id="current-time"></span></p>
 		</div>
 	</div>
 	
@@ -38,12 +39,12 @@
                   <tr>
                     <th>Train Name</th>
                     <th>Destination</th>
-                    <th>Arriving In:</th>
-                    <th>Arriving From:</th>
-                    <th>Frequency</th>
+                    <th>Next Departure Time:</th>
+                    <th>Departure Frequency (mins)</th>
+                    <th>Next Train (mins)</th>
                   </tr>
                 </thead>
-                <tbody id="table">
+                <tbody id="train-table-body">
                 </tbody>
               </table>
             </div>
@@ -59,13 +60,11 @@
 
 					<div><label for="train-name">Train Name</label>
 					<input type="name" class="form-control" id="train-name"></div>
-					<div><label for="train-destination">Destination</label>
-					<input type="name" class="form-control" id="train-name"></div>
-					<div><label for="arrival" class="input">Estimated Arrival</label>
-					<input type="time" class="form-control" id="arrival"></div>
-					<div><label for="arriving-from">Arriving From</label>
-					<input type="text" class="form-control" id="arriving-from"></div>
-					<div><label for="frequency">Frequency</label>
+					<div><label for="destination">Destination</label>
+					<input type="name" class="form-control" id="destination"></div>
+					<div><label for="departure-time" class="input">Departure Time</label>
+					<input type="time" class="form-control" id="departure-time"></div>
+					<div><label for="frequency">Frequency (minutes)</label>
 					<input type="text" class="form-control" id="frequency"></div>
 
 			 <button class="btn btn-primary" id="train-add-btn" type="submit">Submit</button>

@@ -1,3 +1,13 @@
 	body{
 		background-image: url('../images/background.jpg');
 	}
+.btn {
+  transition-duration: 1s;
+  transition-timing-function: ease-in-out;
+  transition-property: all;
+}
+
+.btn:hover {
+  color: #fff;
+  background: purple;
+}
