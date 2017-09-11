@@ -129,7 +129,7 @@ function CurrentTrainsValueChanged(childSnapshot){
       }
 
 
-
+$("." + trainKey).empty();
 $("." + trainKey).append(
   $("<td>").text(trainName),
   $("<td>").text(destination),
