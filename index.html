@@ -1,88 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta name="Trainviewport" content="width=device-width, initial-scale=1">
-	<title>Trains are fun!</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
-<!-- <link href="https://fonts.googleapis.com/css?family=Pacifico|VT323|Open+Sans+Condensed:300" rel="stylesheet"> -->
-<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
-<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
-<script src="https://use.fontawesome.com/cd53706be4.js"></script>
-<link rel="icon" href="assets/images/android.png">
-</head>
-<body>
-<div class="row">
-	<div class="col-xs-2"></div>
-		
-	<div class="container col-xs-8">
-		<div class="jumbotron text-center">
-			<h1>Trains can be fun I suppose</h1>
-			<h2>Choo Choo?</h2>
-			<p> Current Time: <span id="current-time"></span></p>
+	<head>
+		<meta name="Trainviewport" content="width=device-width, initial-scale=1">
+		<title>Trains are fun!</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
+		<!-- <link href="https://fonts.googleapis.com/css?family=Pacifico|VT323|Open+Sans+Condensed:300" rel="stylesheet"> -->
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+		<script src="https://use.fontawesome.com/cd53706be4.js"></script>
+		<link rel="icon" href="assets/images/android.png">
+	</head>
+	<body>
+		<div class="row">
+			<div class="col-xs-2"></div>
+			
+			<div class="container col-xs-8">
+				<div class="jumbotron text-center">
+					<h1>Trains can be fun I suppose</h1>
+					<h2>Choo Choo?</h2>
+					<p> Current Time: <span id="current-time"></span></p>
+				</div>
+			</div>
+			
+			<div class="col-xs-2"></div>
+		</div>
+		<div class="col-md-7 col-xs-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h2 class="panel-title"><strong>Current Trains</strong></h2>
+				</div>
+				<div class="panel-body">
+					<table class="table" id='train-table'>
+						<thead>
+							<tr>
+								<th>Train Name</th>
+								<th>Destination</th>
+								<th>Next Departure Time:</th>
+								<th>Departure Frequency (mins)</th>
+								<th>Next Train (mins)</th>
+							</tr>
+						</thead>
+						<tbody id="train-table-body">
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-5 col-xs-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h2 class="panel-title"><strong>Schedule Another Train</strong></h2>
+				</div>
+				<div class="panel-body">
+					<form id="train-add" class="form-group">
+						<div><label for="train-name">Train Name</label>
+						<input type="name" class="form-control" id="train-name"></div>
+						<div><label for="destination">Destination</label>
+						<input type="name" class="form-control" id="destination"></div>
+						<div><label for="departure-time" class="input">Departure Time</label>
+						<input type="time" class="form-control" id="departure-time"></div>
+						<div><label for="frequency">Frequency (minutes)</label>
+						<input type="text" class="form-control" id="frequency"></div>
+						<button class="btn btn-primary" id="train-add-btn" type="submit">Submit</button>
+						<button class="btn btn-primary" id="train-reset" type="reset">Reset Form</button>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
-	
-	<div class="col-xs-2"></div>
-</div>
-	 <div class="col-md-7 col-xs-12">	
-		<div class="panel panel-primary">
-            <div class="panel-heading">
-               <h2 class="panel-title"><strong>Current Trains</strong></h2>
-            </div>
-            <div class="panel-body">
-              <table class="table" id='train-table'>
-                <thead>
-                  <tr>
-                    <th>Train Name</th>
-                    <th>Destination</th>
-                    <th>Next Departure Time:</th>
-                    <th>Departure Frequency (mins)</th>
-                    <th>Next Train (mins)</th>
-                  </tr>
-                </thead>
-                <tbody id="train-table-body">
-                </tbody>
-              </table>
-            </div>
-          </div>
-      </div>
-   <div class="col-md-5 col-xs-12">
-	<div class="panel panel-primary">
-		<div class="panel-heading">
-			<h2 class="panel-title"><strong>Schedule Another Train</strong></h2>
-		</div>
-		<div class="panel-body">
-			<form id="train-add" class="form-group">	
-
-					<div><label for="train-name">Train Name</label>
-					<input type="name" class="form-control" id="train-name"></div>
-					<div><label for="destination">Destination</label>
-					<input type="name" class="form-control" id="destination"></div>
-					<div><label for="departure-time" class="input">Departure Time</label>
-					<input type="time" class="form-control" id="departure-time"></div>
-					<div><label for="frequency">Frequency (minutes)</label>
-					<input type="text" class="form-control" id="frequency"></div>
-
-			 <button class="btn btn-primary" id="train-add-btn" type="submit">Submit</button>
-			 <button class="btn btn-primary" id="train-reset" type="reset">Reset Form</button>
-
- 			</form>
-
-		</div>
-
-	</div>
-
-</div>
-</div>
-
-
-
-<script type="text/javascript" src="assets/js/trainscheduler.js"></script>
-<footer>
-</footer>
+	<script type="text/javascript" src="assets/js/trainscheduler.js"></script>
+	<footer>
+	</footer>
 </body>
 </html>
